@@ -1,0 +1,131 @@
+import { create_sprite,loop_audio, create_audio, stop_audio, play_audio, create_text,update_text, update_position, update_scale, pointer_over_gameobject, input_left_mouse_down, update_to_top, query_pointer_position, update_loop, build_game, update_color} from "arcade_2d";
+
+const icon1_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_1_close.jpg"),[0.1,0.1]);
+const icon1_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_1_open.jpg"),[0.1,0.1]);
+const icon2_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_2_close.jpg"),[0.1,0.1]);
+const icon2_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_2_open.jpg"),[0.1,0.1]);
+const icon3_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_3_close.jpg"),[0.1,0.1]);
+const icon3_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_3_open.jpg"),[0.1,0.1]);
+const icon4_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_4_close.jpg"),[0.1,0.1]);
+const icon4_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_4_open.jpg"),[0.1,0.1]);
+const icon5_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_5_close.jpg"),[0.1,0.1]);
+const icon5_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_5_open.jpg"),[0.1,0.1]);
+const icon6_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/melody_1_close.jpg"),[0.1,0.1]);
+const icon6_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/melody_1_open.jpg"),[0.1,0.1]);
+const audio1 = loop_audio(create_audio("https://labs.phaser.io/assets/audio/SoundEffects/alien_death1.wav", 1));
+const audio2 = loop_audio(create_audio("https://labs.phaser.io/assets/audio/SoundEffects/key.wav", 1));
+const audio3 = loop_audio(create_audio("https://labs.phaser.io/assets/audio/SoundEffects/escape.wav", 1));
+const audio4 = loop_audio(create_audio("https://labs.phaser.io/assets/audio/SoundEffects/pickup.wav", 1));
+const audio5 = loop_audio(create_audio("https://labs.phaser.io/assets/audio/SoundEffects/battery.wav", 1));
+const audio6 = loop_audio(create_audio("https://labs.phaser.io/assets/audio/SoundEffects/pusher.wav", 1));
+const gameobjects = [
+   
+   update_position(icon1_c, [150, 200]),
+   update_position(icon2_c, [300, 200]),
+   update_position(icon3_c, [450, 200]),
+   update_position(icon4_c, [150, 450]),
+   update_position(icon5_c, [300, 450]),
+   update_position(icon6_c, [450, 450])];
+   
+const button1 = create_text("start");
+const button2 = create_text("start");
+const button3 = create_text("start");
+const button4 = create_text("start");
+const button5 = create_text("start");
+const button6 = create_text("start");
+
+
+const textobjects = [
+    update_position(update_scale(create_text('MY MUSIC'),[2.5,2.5]),[300,50]),
+    update_position(button1,[150,300]),
+    update_position(button2,[300,300]),
+    update_position(button3,[450,300]),
+    update_position(button4,[150,550]),
+    update_position(button5,[300,550]),
+    update_position(button6,[450,550])];
+    
+let a = true;  
+let b = true; 
+let c = true; 
+let d = true; 
+let e = true; 
+let f = true; 
+    
+    
+    
+
+
+update_loop(game_state => {
+  if (input_left_mouse_down() && pointer_over_gameobject(button1) && a  ) {
+      update_text(update_color(button1, [255, 255, 255, 255]), 'stop');
+
+      update_to_top(update_text(update_color(button1, [255, 0, 0, 255]), 'stop'));
+
+      update_to_top(update_position(icon1_o, [150, 200]));
+      play_audio(audio1);
+      a = !a;
+  } else if(input_left_mouse_down() && pointer_over_gameobject(update_text(update_color(button1, [255, 0, 0, 255]), 'stop')) && !a ) {
+     update_to_top(update_text(update_color(button1, [0, 0, 0, 255]),'start'));
+     update_to_top(update_position(icon1_c, [150, 200]));
+     stop_audio(audio1);
+      a = !a; 
+  }
+  if (input_left_mouse_down() && pointer_over_gameobject(button2) && b ) {
+      update_to_top(update_text(update_color(button2, [255, 0, 0, 255]),'stop'));
+      update_to_top(update_position(icon2_o, [300, 200]));
+      play_audio(audio2);
+      b = !b;
+  } else if(input_left_mouse_down() && pointer_over_gameobject(button2) && !b ) {
+     update_to_top(update_text(update_color(button1, [255, 0, 0, 255]),'start'));
+     update_to_top(update_position(icon2_c, [300, 200]));
+     stop_audio(audio2);
+      b = !b; 
+  }
+  if (input_left_mouse_down() && pointer_over_gameobject(button3) && c ) {
+      update_to_top(update_text(update_color(button3, [255, 0, 0, 255]),'stop'));
+      update_to_top(update_position(icon3_o, [450, 200]));
+      play_audio(audio3);
+      c = !c;
+  } else if (input_left_mouse_down() && pointer_over_gameobject(button3) && !c){
+      update_to_top(update_text(update_color(button3, [0, 0, 0, 255]),'start'));
+      update_to_top(update_position(icon3_c, [450, 200]));
+      stop_audio(audio3);
+      c = !c; 
+  }
+  if (input_left_mouse_down() && pointer_over_gameobject(button4) && d) {
+      update_to_top(update_text(update_color(button4, [255, 0, 0, 255]),'stop'));
+      update_to_top(update_position(icon4_o, [150, 450]));
+      play_audio(audio4);
+      d = !d;
+  } else if (input_left_mouse_down() && pointer_over_gameobject(button4) && !d){
+      update_to_top(update_text(update_color(button4, [0, 0, 0, 255]),'start'));
+      update_to_top(update_position(icon4_c, [150, 450]));
+      stop_audio(audio4);
+      d = !d; 
+  }
+  if (input_left_mouse_down() && pointer_over_gameobject(button5) && e) {
+      update_to_top(update_text(update_color(button5, [255, 0, 0, 255]),'stop'));
+      update_to_top(update_position(icon5_o, [300, 450]));
+      play_audio(audio5);
+      e = !e;
+  } else if (input_left_mouse_down() && pointer_over_gameobject(button5) && !e){
+      update_to_top(update_text(update_color(button5, [0, 0, 0, 255]),'start'));
+      update_to_top(update_position(icon5_c, [300, 450]));
+      stop_audio(audio5);
+      e = !e; 
+  }
+  if (input_left_mouse_down() && pointer_over_gameobject(button6) && f) {
+      update_to_top(update_text(update_color(button6, [255, 0, 0, 255]),'stop'));
+      update_to_top(update_position(icon6_o, [450, 450]));
+      play_audio(audio6);
+      f = !f;
+  } else if (input_left_mouse_down() && pointer_over_gameobject(button6) && !f){
+      update_to_top(update_text(update_color(button6, [0, 0, 0, 255]),'start'));
+      update_to_top(update_position(icon6_c, [300, 450]));
+      stop_audio(audio6);
+      f = !f; 
+  }
+});
+
+
+build_game();
