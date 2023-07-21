@@ -61,7 +61,7 @@ for(let i = 0; i < 6; i = i + 1){
 }
 
 const textobjects = [
-    update_position(update_scale(create_text('MY MUSIC'),[2.5,2.5]),[300,50]),
+    update_position(update_scale(create_text('RHYTHM BOX'),[2.5,2.5]),[300,50]),
     update_position(create_text('start'),[150,300]),
     update_position(create_text('start'),[300,300]),
     update_position(create_text('start'),[450,300]),
