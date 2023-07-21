@@ -1,0 +1,108 @@
+import {update_scale, create_sprite, update_position, create_text, update_text, input_left_mouse_down, pointer_over_gameobject, update_to_top, update_loop, input_right_mouse_down, build_game, update_color} from "arcade_2d";
+
+
+const icon1_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_1_close.jpg"),[0.1,0.1]);
+const icon1_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_1_open.jpg"),[0.1,0.1]);
+const icon2_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_2_close.jpg"),[0.1,0.1]);
+const icon2_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_2_open.jpg"),[0.1,0.1]);
+const icon3_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_3_close.jpg"),[0.1,0.1]);
+const icon3_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_3_open.jpg"),[0.1,0.1]);
+const icon4_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_4_close.jpg"),[0.1,0.1]);
+const icon4_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_4_open.jpg"),[0.1,0.1]);
+const icon5_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_5_close.jpg"),[0.1,0.1]);
+const icon5_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/b_box_5_open.jpg"),[0.1,0.1]);
+const icon6_c = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/melody_1_close.jpg"),[0.1,0.1]);
+const icon6_o = update_scale(create_sprite("https://raw.githubusercontent.com/Chloeeeex/NUS_Group_project/main/icon/melody_1_open.jpg"),[0.1,0.1]);
+
+
+const icon_open_object = [
+   
+   update_position(icon1_o, [150, 200]),
+   update_position(icon2_o, [300, 200]),
+   update_position(icon3_o, [450, 200]),
+   update_position(icon4_o, [150, 450]),
+   update_position(icon5_o, [300, 450]),
+   update_position(icon6_o, [450, 450])
+   ];
+
+const icon_close_object = [
+   
+   update_position(icon1_c, [150, 200]),
+   update_position(icon2_c, [300, 200]),
+   update_position(icon3_c, [450, 200]),
+   update_position(icon4_c, [150, 450]),
+   update_position(icon5_c, [300, 450]),
+   update_position(icon6_c, [450, 450])
+   ];
+
+// 设置标题
+update_position(update_scale(create_text('MY MUSIC'),[2.5,2.5]),[300,50]);
+
+const textobjects = [
+    update_position(create_text('start'),[150,300]),
+    update_position(create_text('start'),[300,300]),
+    update_position(create_text('start'),[450,300]),
+    update_position(create_text('start'),[150,550]),
+    update_position(create_text('start'),[300,550]),
+    update_position(create_text('start'),[450,550])
+    ];
+    
+
+    
+// 用来控制start和stop的文字变化（可以无限次变但是我不知道为什么）   
+function click_textobject_to_start(textobject) {
+  if (input_left_mouse_down() && pointer_over_gameobject(textobject) ) {
+      update_to_top(update_text(update_color(textobject, [255, 0, 0, 255]),'stop'));
+      
+  }
+}
+
+function click_textobject_to_stop(textobject) {
+  if (input_right_mouse_down() && pointer_over_gameobject(textobject) ) {
+      update_to_top(update_text(update_color(textobject, [255, 255, 255, 255]),'start'));
+      //update_to_top(update_position(icon_close_object, [150, 200]));
+      
+  }
+}
+
+
+
+update_loop(game_state => {
+  for (let i = 1; i < 7; i = i + 1) {
+      click_textobject_to_start(textobjects[i]);
+      click_textobject_to_stop(textobjects[i]);
+  }
+});
+
+
+// update_loop(game_state => {
+//   for (let i = 0; i < 7; i = i + 1) {
+//       if (input_left_mouse_down() && pointer_over_gameobject(textobjects) ) {
+//           update_to_top(update_text(update_color(textobjects[i], [255, 0, 0, 255]),'stop'));
+      
+//           if(i < 4){
+//           update_to_top(update_position(icon_open_object[i], [150 + i * 150, 200]));
+//           }else{
+//           update_to_top(update_position(icon_open_object[i], [150 + (i - 3) * 150, 550]));
+//       }
+//       }
+      
+//       else if(input_right_mouse_down() && pointer_over_gameobject(textobjects)){
+//           update_to_top(update_text(update_color(textobjects, [255, 255, 255, 255]),'start'));
+          
+//           if(i < 4){
+//               update_to_top(update_position(icon_close_object[i], [150 + i * 150, 200]));
+//           }
+//           else{
+//               update_to_top(update_position(icon_close_object[i], [[150 + (i - 3) * 150, 550]]));
+//           }
+//       }
+      
+//     //   click_textobject_to_start(textobjects[i]);
+      
+      
+//     //   click_textobject_to_stop(textobjects[i]);
+      
+//   }
+// });
+build_game();
